@@ -1,0 +1,29 @@
+Assignment name  : hex_match_base
+Expected files   : hex_match_base.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Write a program that takes two strings as command-line arguments (s1 and s2).
+
+Your program must:
+1. Check if s1 is hidden as a subsequence inside s2 (all characters of s1 
+   must appear in s2 in the exact same order).
+2. If s1 IS hidden in s2:
+   - Count the total number of alphabetic characters ('a'-'z', 'A'-'Z') in s1.
+   - Calculate the sum of the ASCII values of all characters in s1.
+   - Compute: (alphabetic_count * ascii_sum).
+   - Convert and print this product in lowercase hexadecimal 
+     ("0123456789abcdef") followed by a newline.
+3. If s1 IS NOT hidden in s2, or if argc is not equal to 3, print 
+   a single newline '\n'.
+
+Examples:
+
+$> ./hex_match_base "abc" "x_a_b_c_y" | cat -e
+381$
+$> ./hex_match_base "pad" "p~a~d" | cat -e
+381$
+$> ./hex_match_base "abc" "acb" | cat -e
+$
+$> ./hex_match_base | cat -e
+$

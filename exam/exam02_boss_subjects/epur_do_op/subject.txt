@@ -1,0 +1,32 @@
+Assignment name  : epur_do_op
+Expected files   : epur_do_op.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Write a program that takes one string as a command-line argument.
+This string represents an arithmetic operation formatted with arbitrary 
+leading, trailing, or intermediate spaces and tabs:
+
+"[spaces] [number1] [spaces] [operator] [spaces] [number2] [spaces]"
+
+Your program must:
+1. Parse number1 and number2 (handling optional leading '+' or '-' signs).
+2. Validate the arithmetic operator (+, -, *, /, %).
+3. Perform the arithmetic operation.
+4. If the operator is '/' or '%' and number2 evaluates to 0, print "ERR" 
+   followed by a newline.
+5. Print the final calculated integer in base 10 followed by a newline.
+
+If argc is not 2, or if the string formatting/operator is invalid, print 
+a single newline '\n'.
+
+Examples:
+
+$> ./epur_do_op "   -42    +   21   " | cat -e
+-21$
+$> ./epur_do_op "	105  % 	0 " | cat -e
+ERR$
+$> ./epur_do_op " 123 * -2 " | cat -e
+-246$
+$> ./epur_do_op | cat -e
+$

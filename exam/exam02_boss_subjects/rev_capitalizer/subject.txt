@@ -1,0 +1,27 @@
+Assignment name  : rev_capitalizer
+Expected files   : rev_capitalizer.c
+Allowed functions: write, malloc, free
+--------------------------------------------------------------------------------
+
+Write a program that takes one string as a command-line argument.
+The string contains words separated by spaces and/or tabs.
+
+Your program must:
+1. Extract the words and reverse their order in the sentence.
+2. Capitalize each word such that the LAST letter of each word is uppercase, 
+   and all other letters are lowercase.
+3. Output the converted words separated by EXACTLY ONE single space, 
+   with no trailing spaces at the end, followed by a newline.
+
+If argc is not 2 or if the string contains no words, display a single newline '\n'.
+
+Examples:
+
+$> ./rev_capitalizer "  Hello   WORLD   this is a TEST " | cat -e
+tesT A I S thiS worlD hellO$
+$> ./rev_capitalizer "	SecuRe   yoUR   codE " | cat -e
+codE yoUR securE$
+$> ./rev_capitalizer "" | cat -e
+$
+$> ./rev_capitalizer | cat -e
+$
