@@ -1,0 +1,22 @@
+================================================================================
+Assignment Name : ft_rrange
+Expected Files  : ft_rrange.c
+Allowed Functions: malloc
+================================================================================
+
+Subject Description:
+---------------------
+Write a function 'ft_rrange' that allocates (with malloc) an array of integers, 
+fills it with consecutive values that begin at 'end' and end at 'start' 
+(inclusive!), and returns a pointer to the first element of the array.
+
+Function Prototype:
+-------------------
+int *ft_rrange(int start, int end);
+
+Examples:
+---------
+- Given start = 1 and end = 3, returns an array containing [3, 2, 1].
+- Given start = -1 and end = 2, returns an array containing [2, 1, 0, -1].
+- Given start = 0 and end = 0, returns an array containing [0].
+- Given start = 0 and end = -3, returns an array containing [-3, -2, -1, 0].

@@ -1,0 +1,28 @@
+================================================================================
+Assignment Name : ft_atoi_base
+Expected Files  : ft_atoi_base.c
+Allowed Functions: None
+================================================================================
+
+Subject Description:
+---------------------
+Write a function that converts the string argument 'str' (given in a base 
+representation 'str_base') to an integer (base 10) and returns the result.
+
+1. 'str_base' will be between 2 and 16 inclusive.
+2. Digits higher than 9 must be accepted in both uppercase ('A'-'F') and 
+   lowercase ('a'-'f').
+3. The function must handle arbitrary leading whitespaces (' ', '\t', '\n', etc.) 
+   and a single optional prefix sign ('+' or '-').
+4. If invalid characters are encountered that do not belong in 'str_base', 
+   conversion stops at that character.
+
+Function Prototype:
+-------------------
+int ft_atoi_base(const char *str, int str_base);
+
+Examples:
+---------
+- ft_atoi_base("1f", 16)      -> returns 31
+- ft_atoi_base("  -1011", 2)  -> returns -11
+- ft_atoi_base("  +A27", 10)  -> stops at 'A', returns 0
