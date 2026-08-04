@@ -1,0 +1,17 @@
+Assignment name  : ft_itoa_base
+Expected files   : ft_itoa_base.c
+Allowed functions: malloc
+--------------------------------------------------------------------------------
+
+Write a function that converts an integer value into a null-terminated string
+using a specified base (from 2 to 16).
+
+1. Digits must be represented in uppercase: 0123456789ABCDEF.
+2. If base is 10 and value is negative, the resulting string must start with a
+   minus sign '-'.
+3. For any other base, negative values should be handled as unsigned integers
+   (or tested within standard positive integer bounds).
+
+Function Prototype:
+
+char *ft_itoa_base(int value, int base);

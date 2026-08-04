@@ -1,0 +1,23 @@
+Assignment name  : rev_wstr
+Expected files   : rev_wstr.c
+Allowed functions: write, malloc, free
+--------------------------------------------------------------------------------
+
+Write a program that takes a string as a parameter and prints its words in
+reverse order.
+
+A "word" is a part of a string delimited by spaces and/or tabs, or the
+start/end of the string.
+
+If the number of parameters is not 1, the program displays a newline.
+
+Examples:
+
+$> ./rev_wstr "You hate Python!" | cat -e
+Python! hate You$
+$> ./rev_wstr "  Hello   World  " | cat -e
+World Hello$
+$> ./rev_wstr "abcdefg" | cat -e
+abcdefg$
+$> ./rev_wstr "" | cat -e
+$
