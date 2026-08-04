@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strs_to_tab.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amoutia <amoutia@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/05 00:11:34 by amoutia           #+#    #+#             */
+/*   Updated: 2026/08/05 00:26:20 by amoutia          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "ft_stock_str.h"
 
-int hseb_tol(char *str)
+int	hseb_tol(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -11,10 +23,10 @@ int hseb_tol(char *str)
 	return (i);
 }
 
-char *copy_lina(char *strr)
+char	*copy_lina(char *strr)
 {
-	int i;
-	char *ptr;
+	int		i;
+	char	*ptr;
 
 	i = 0;
 	ptr = malloc(sizeof(char) * (hseb_tol(strr) + 1));
@@ -29,10 +41,10 @@ char *copy_lina(char *strr)
 	return (ptr);
 }
 
-struct s_stock_str *ft_strs_to_tab(int ac, char **av)
+struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
-	t_stock_str *arr;
-	int i;
+	t_stock_str	*arr;
+	int			i;
 
 	if (ac < 0)
 		return (NULL);
