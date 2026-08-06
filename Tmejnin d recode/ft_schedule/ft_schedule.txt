@@ -1,0 +1,53 @@
+Assignment name  : ft_schedule
+Allowed functions: write
+###########################################
+
+Write a program that merges the time ranges given as arguments and prints the
+free-of-overlap schedule that comes out of it.
+
+Your program must be declared as follows:
+
+    int main(int argc, char **argv);
+
+- Each argument is a time range written exactly like "HH:MM-HH:MM", so eleven
+  characters: two digits, a ':', two digits, a '-', two digits, a ':' and two
+  digits.
+
+- A range is valid when the hours go from 00 to 23, the minutes from 00 to 59,
+  and the start is strictly before the end. Every range stays inside the same day.
+
+- Two ranges are merged when they overlap, and also when they only touch each
+  other: 08:00-09:00 and 09:00-10:00 become 08:00-10:00.
+
+- Print the merged ranges from the earliest to the latest, one per line, written
+  the same way as the arguments. The hours and the minutes always take two digits.
+
+- If one of the arguments is not a valid range, print "Error: Invalid range" and
+  print nothing else.
+
+- If no argument is provided, print "No range provided.".
+
+Example:
+
+$> ./ft_schedule 09:00-10:30 10:00-11:00 13:00-14:00 09:30-09:45
+09:00-11:00
+13:00-14:00
+
+$> ./ft_schedule 08:00-09:00 09:00-10:00
+08:00-10:00
+
+$> ./ft_schedule 22:00-23:59 07:15-08:45
+07:15-08:45
+22:00-23:59
+
+$> ./ft_schedule 9:00-10:00
+Error: Invalid range
+
+$> ./ft_schedule 09:60-10:00
+Error: Invalid range
+
+$> ./ft_schedule 10:00-09:00
+Error: Invalid range
+
+$> ./ft_schedule
+No range provided.
