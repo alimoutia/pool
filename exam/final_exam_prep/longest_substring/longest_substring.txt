@@ -1,0 +1,28 @@
+Assignment name  : longest_substring
+Expected files   : longest_substring.c
+Allowed functions: None
+--------------------------------------------------------------------------------
+
+Write a function that takes a string as a parameter and returns the length of
+the longest substring without duplicate characters.
+
+A "substring" is a contiguous sequence of characters within a string.
+
+Examples:
+
+1. Input: str = "abcabcbb"
+   Output: 3
+   Explanation: The answer is "abc", with length 3.
+
+2. Input: str = "bbbbb"
+   Output: 1
+   Explanation: The answer is "b", with length 1.
+
+3. Input: str = "pwwkew"
+   Output: 3
+   Explanation: The answer is "wke", with length 3. Note that "pwke" is a
+   subsequence and not a substring.
+
+Function Prototype:
+
+int	longest_substring(char *str);
