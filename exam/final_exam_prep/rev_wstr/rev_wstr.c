@@ -22,7 +22,7 @@ int main(int argc, char **argv)
             while (j >= 0 && argv[1][j] != '\0' && argv[1][j] != ' ' && argv[1][j] != '\t')
                 j--;
             i = j + 1;
-            if (word_printed >= 1)
+            if (word_printed == 1)
                 write(1, " ", 1);
             while (argv[1][i] != '\0' && argv[1][i] != ' ' && argv[1][i] != '\t')
             {

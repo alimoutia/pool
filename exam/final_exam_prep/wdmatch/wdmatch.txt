@@ -1,0 +1,26 @@
+Assignment name  : wdmatch
+Expected files   : wdmatch.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Write a program that takes two strings and checks whether the first string can
+be written using characters from the second string, while respecting the order
+in which characters appear in the second string.
+
+If it's possible, the program displays the first string, followed by a \n.
+
+If the number of arguments is not 2, or if the first string cannot be written
+using the second string, the program displays a \n.
+
+Examples:
+
+$> ./wdmatch "faya" "fgaleaiya" | cat -e
+faya$
+$> ./wdmatch "faya" "fgaleaiy" | cat -e
+$
+$> ./wdmatch "quarante deux" "q_u_a_r_a_n_t_e_d_e_u_x" | cat -e
+quarante deux$
+$> ./wdmatch "error" "rrreo" | cat -e
+$
+$> ./wdmatch | cat -e
+$
