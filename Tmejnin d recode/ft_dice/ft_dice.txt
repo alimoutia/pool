@@ -1,0 +1,62 @@
+Assignment name  : ft_dice
+Allowed functions: write
+###########################################
+
+Write a program that draws the faces of the dice given as arguments.
+
+Your program must be declared as follows:
+
+    int main(int argc, char **argv);
+
+- Each argument is the value of one die: a single character from '1' to '6'.
+
+- A die is drawn on 5 lines of 9 characters:
+
+    - the first line and the last line are "+-------+"
+    - the three other lines hold the pips of the die and are written like this:
+      a '|', then the three cells of the row, each one preceded by a space,
+      then a space and a '|'. A cell holds an 'o' when it has a pip, and a
+      space when it has none.
+
+- The pips of a die are placed on a grid of 3 rows and 3 columns:
+
+    - 1 : the center
+    - 2 : the top left and the bottom right
+    - 3 : the top left, the center and the bottom right
+    - 4 : the four corners
+    - 5 : the four corners and the center
+    - 6 : the left column and the right column
+
+- All the dice are drawn side by side, separated by a single space: the first
+  line of every die is printed on the same line, then the second one, and so on.
+
+- If one of the arguments is not a value from '1' to '6', print
+  "Error: Invalid die" and draw nothing.
+
+- If no argument is provided, print "Usage: ./ft_dice <1-6> [1-6] ...".
+
+Example:
+
+$> ./ft_dice 1
++-------+
+|       |
+|   o   |
+|       |
++-------+
+
+$> ./ft_dice 3 5
++-------+ +-------+
+| o     | | o   o |
+|   o   | |   o   |
+|     o | | o   o |
++-------+ +-------+
+
+$> ./ft_dice 6 2 4
++-------+ +-------+ +-------+
+| o   o | | o     | | o   o |
+| o   o | |       | |       |
+| o   o | |     o | | o   o |
++-------+ +-------+ +-------+
+
+$> ./ft_dice 2 10
+Error: Invalid die
