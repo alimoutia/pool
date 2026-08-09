@@ -1,111 +1,151 @@
 #include <unistd.h>
 
-static int parse_time(char *s)
-{
-    int hours;
-    int minutes;
+typedef struct s_range {
+	int	start;
+	int	end;
+}	t_range;
 
-    hours = (s[0] - '0') * 10 + (s[1] - '0');
-    minutes = (s[3] - '0') * 10 + (s[4] - '0');
-    return (hours * 60 + minutes);
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
 
-static void print_time(int total_minutes)
+int	is_digit(char c)
 {
-    int hours;
-    int minutes;
-    char c;
-
-    hours = total_minutes / 60;
-    minutes = total_minutes % 60;
-
-    c = (hours / 10) + '0';
-    write(1, &c, 1);
-    c = (hours % 10) + '0';
-    write(1, &c, 1);
-
-    write(1, ":", 1);
-
-    c = (minutes / 10) + '0';
-    write(1, &c, 1);
-    c = (minutes % 10) + '0';
-    write(1, &c, 1);
+	return (c >= '0' && c <= '9');
 }
 
-int main(int argc, char **argv)
+void	ft_putstr(char *s)
 {
-    int starts[1024];
-    int ends[1024];
-    int count;
-    int i;
-    int j;
-    int cur_start;
-    int cur_end;
+	while (*s)
+	{
+		write(1, s, 1);
+		s++;
+	}
+}
 
-    if (argc < 2)
-    {
-        write(1, "\n", 1);
-        return (0);
-    }
+void	print_2digits(int n)
+{
+	char	d1;
+	char	d2;
 
-    count = argc - 1;
-    i = 0;
+	d1 = (n / 10) + '0';
+	d2 = (n % 10) + '0';
+	write(1, &d1, 1);
+	write(1, &d2, 1);
+}
 
-    while (i < count)
-    {
-        starts[i] = parse_time(argv[i + 1]);
-        ends[i] = parse_time(argv[i + 1] + 6);
-        i++;
-    }
+void	print_range(int start, int end)
+{
+	print_2digits(start / 60);
+	write(1, ":", 1);
+	print_2digits(start % 60);
+	write(1, "-", 1);
+	print_2digits(end / 60);
+	write(1, ":", 1);
+	print_2digits(end % 60);
+	write(1, "\n", 1);
+}
 
-    i = 0;
-    while (i < count - 1)
-    {
-        j = 0;
-        while (j < count - i - 1)
-        {
-            if (starts[j] > starts[j + 1])
-            {
-                int tmp_start = starts[j];
-                starts[j] = starts[j + 1];
-                starts[j + 1] = tmp_start;
+int	parse_range(char *str, int *start, int *end)
+{
+	int	h1;
+	int	m1;
+	int	h2;
+	int	m2;
 
-                int tmp_end = ends[j];
-                ends[j] = ends[j + 1];
-                ends[j + 1] = tmp_end;
-            }
-            j++;
-        }
-        i++;
-    }
+	if (ft_strlen(str) != 11)
+		return (0);
+	if (!is_digit(str[0]) || !is_digit(str[1]) || str[2] != ':'
+		|| !is_digit(str[3]) || !is_digit(str[4]) || str[5] != '-'
+		|| !is_digit(str[6]) || !is_digit(str[7]) || str[8] != ':'
+		|| !is_digit(str[9]) || !is_digit(str[10]))
+		return (0);
+	h1 = (str[0] - '0') * 10 + (str[1] - '0');
+	m1 = (str[3] - '0') * 10 + (str[4] - '0');
+	h2 = (str[6] - '0') * 10 + (str[7] - '0');
+	m2 = (str[9] - '0') * 10 + (str[10] - '0');
+	if (h1 < 0 || h1 > 23 || m1 < 0 || m1 > 59)
+		return (0);
+	if (h2 < 0 || h2 > 23 || m2 < 0 || m2 > 59)
+		return (0);
+	*start = h1 * 60 + m1;
+	*end = h2 * 60 + m2;
+	if (*start >= *end)
+		return (0);
+	return (1);
+}
 
-    cur_start = starts[0];
-    cur_end = ends[0];
-    i = 1;
+void	sort_ranges(t_range *ranges, int count)
+{
+	int		i;
+	int		j;
+	t_range	tmp;
 
-    while (i < count)
-    {
-        if (starts[i] <= cur_end)
-        {
-            if (ends[i] > cur_end)
-                cur_end = ends[i];
-        }
-        else
-        {
-            print_time(cur_start);
-            write(1, "-", 1);
-            print_time(cur_end);
-            write(1, "\n", 1);
-            cur_start = starts[i];
-            cur_end = ends[i];
-        }
-        i++;
-    }
+	i = 0;
+	while (i < count - 1)
+	{
+		j = 0;
+		while (j < count - 1 - i)
+		{
+			if (ranges[j].start > ranges[j + 1].start)
+			{
+				tmp = ranges[j];
+				ranges[j] = ranges[j + 1];
+				ranges[j + 1] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
-    print_time(cur_start);
-    write(1, "-", 1);
-    print_time(cur_end);
-    write(1, "\n", 1);
+int	main(int argc, char **argv)
+{
+	t_range	ranges[1024];
+	int		i;
+	int		cur_start;
+	int		cur_end;
 
-    return (0);
+	if (argc == 1)
+	{
+		ft_putstr("No range provided.\n");
+		return (0);
+	}
+	i = 0;
+	while (i < argc - 1)
+	{
+		if (!parse_range(argv[i + 1], &ranges[i].start, &ranges[i].end))
+		{
+			ft_putstr("Error: Invalid range\n");
+			return (0);
+		}
+		i++;
+	}
+	sort_ranges(ranges, argc - 1);
+	cur_start = ranges[0].start;
+	cur_end = ranges[0].end;
+	i = 1;
+	while (i < argc - 1)
+	{
+		if (ranges[i].start <= cur_end)
+		{
+			if (ranges[i].end > cur_end)
+				cur_end = ranges[i].end;
+		}
+		else
+		{
+			print_range(cur_start, cur_end);
+			cur_start = ranges[i].start;
+			cur_end = ranges[i].end;
+		}
+		i++;
+	}
+	print_range(cur_start, cur_end);
+	return (0);
 }
