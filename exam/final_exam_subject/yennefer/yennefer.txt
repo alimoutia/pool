@@ -1,0 +1,22 @@
+Assignment name  : yennefer
+Expected files   : yennefer.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Write a program that takes a string and an alphabetic key as arguments and
+displays the string encoded with a Vigenere cipher using the key: each letter is
+shifted forward by the alphabet position (0 to 25) of the matching key letter,
+the key repeating across the letters of the string; case is preserved, and
+non-alphabetic characters stay unchanged and do not consume a key letter,
+followed by a newline.
+
+If the number of arguments is not 2, the program displays a newline.
+
+Examples:
+
+$> ./yennefer hello key | cat -e
+rijvs$
+$> ./yennefer Attack abc | cat -e
+Auvadm$
+$> ./yennefer | cat -e
+$
