@@ -19,37 +19,6 @@ int ft_atoi(char *nb)
 	return (result * sign);
 }
 
-void print_outline(void)
-{
-    write(1, "+-------+", 9);
-}
-void print_topline(int n)
-{
-    if (n == 1)
-		write(1, "|       |", 9);
-    if (n == 2 || n == 3)
-		write(1, "| o     |", 9);
-    if (n == 4 || n == 5 || n == 6)
-		write(1, "| o   o |", 9);
-}
-void print_midline(int n)
-{
-    if (n == 2 || n == 4)
-		write(1, "|       |", 9);
-	if (n == 1 || n == 3 || n == 5)
-		write(1, "|   o   |", 9);
-	if (n == 6)
-		write(1, "| o   o |", 9);
-}
-void print_bottomlinr(int n)
-{
-    if (n == 1)
-		write(1, "|       |", 9);
-	if (n == 2 || n == 3)
-		write(1, "|     o |", 9);
-	if (n == 4 || n == 5 || n == 6)
-		write(1, "| o   o |", 9);
-}
 int main(int argc, char **argv)
 {
 	if (argc < 2)
@@ -72,7 +41,7 @@ int main(int argc, char **argv)
 	{
 		if (i > 1)
 			write(1, " ", 1);
-		print_outline();
+		write(1, "+-------+", 9);
 		i++;
 	}
 	write(1, "\n", 1);
@@ -81,7 +50,12 @@ int main(int argc, char **argv)
 	{
 		if (i > 1)
 			write(1, " ", 1);
-		print_topline(ft_atoi(argv[i]));
+		if (ft_atoi(argv[i]) == 1)
+			write(1, "|       |", 9);
+		if (ft_atoi(argv[i]) == 2 || ft_atoi(argv[i]) == 3)
+			write(1, "| o     |", 9);
+		if (ft_atoi(argv[i]) == 4 || ft_atoi(argv[i]) == 5 || ft_atoi(argv[i]) == 6)
+			write(1, "| o   o |", 9);
 		i++;
 	}
 	write(1, "\n", 1);
@@ -90,7 +64,12 @@ int main(int argc, char **argv)
 	{
 		if (i > 1)
 			write(1, " ", 1);
-		print_midline(ft_atoi(argv[i]));
+		if (ft_atoi(argv[i]) == 2 || ft_atoi(argv[i]) == 4)
+			write(1, "|       |", 9);
+		if (ft_atoi(argv[i]) == 1 || ft_atoi(argv[i]) == 3 || ft_atoi(argv[i]) == 5)
+			write(1, "|   o   |", 9);
+		if (ft_atoi(argv[i]) == 6)
+			write(1, "| o   o |", 9);
 		i++;
 	}
 	write(1, "\n", 1);
@@ -99,7 +78,12 @@ int main(int argc, char **argv)
 	{
 		if (i > 1)
 			write(1, " ", 1);
-		print_bottomlinr(ft_atoi(argv[i]));
+		if (ft_atoi(argv[i]) == 1)
+			write(1, "|       |", 9);
+		if (ft_atoi(argv[i]) == 2 || ft_atoi(argv[i]) == 3)
+			write(1, "|     o |", 9);
+		if (ft_atoi(argv[i]) == 4 || ft_atoi(argv[i]) == 5 || ft_atoi(argv[i]) == 6)
+			write(1, "| o   o |", 9);
 		i++;
 	}
 	write(1, "\n", 1);
@@ -108,7 +92,7 @@ int main(int argc, char **argv)
 	{
 		if (i > 1)
 			write(1, " ", 1);
-		print_outline();
+		write(1, "+-------+", 9);
 		i++;
 	}
 	write(1, "\n", 1);
