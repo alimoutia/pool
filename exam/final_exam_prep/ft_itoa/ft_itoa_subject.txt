@@ -1,0 +1,19 @@
+Assignment name  : ft_itoa
+Expected files   : ft_itoa.c
+Allowed functions: malloc
+--------------------------------------------------------------------------------
+
+Write a function that allocates (with malloc(3)) and returns a string
+representing the integer received as an argument.
+
+1. Negative numbers must be handled with a minus sign '-'.
+2. Edge cases like 0 and INT_MIN (-2147483648) must be handled correctly.
+3. Memory allocation must fit the exact length of the resulting string,
+   including sign and null-terminator ('\0').
+
+If allocation fails, the function must return NULL.
+
+Function Prototype:
+
+char *ft_itoa(int n);
+
