@@ -1,83 +1,67 @@
 #include <stdlib.h>
 
-int is_discimal(int base)
+int checkbase(int base)
 {
-	int is_dis;
-
-	is_dis = 0;
 	if (base < 2 || base > 16)
-		return (0);
-	if (base == 10)
-	{
-		is_dis = 1;
-		return (is_dis);
-	}
-	return (is_dis);
-}
-
-char *makestr(unsigned int nb, int base, int len, char *nbr)
-{
-	char *el_base;
-
-	el_base = "0123456789ABCDEF";
-	if (nb == 0)
-		nbr[0] = el_base[nb % base];
-	while (nb > 0)
-	{
-		len--;
-		nbr[len] = el_base[nb % base];
-		nb /= base;
-	}
-	return (nbr);
-}
-int is_negative(int value)
-{
-	if (value < 0)
-		return (1);
+		return (-1);
 	return (0);
 }
 
-int lennb(long int value, int base)
+char *makestr(long int nb, int base, int len, char *str)
 {
-	unsigned int tmp;
-	int len;
+	char *bbase;
 
-	tmp = value;
-	len = 0;
-	while (tmp > 0)
+	bbase = "0123456789ABCDEF";
+	if (nb == 0)
+	{
+		str[0] = bbase[0];
+		return (str);
+	}
+	while (nb != 0)
+	{
+		len--;
+		str[len] = bbase[nb % base];
+		nb = nb / base;
+	}
+	return (str);
+}
+
+int nblen(long int nb, int base, int len)
+{
+	while (nb > 0)
 	{
 		len++;
-		tmp /= base;
+		nb = nb / base;
 	}
-	if (value == 0)
-		len = 1;
 	return (len);
 }
 
 char *ft_itoa_base(int value, int base)
 {
-	int len;
-	long int neg;
+	char *str;
 	unsigned int nb;
-	char *nbr;
+	int len;
 
-	neg = value;
-	len = 0;
-	if (base < 2 || base > 16)
+	if (checkbase(base) == -1)
 		return (NULL);
-	if (is_discimal(base) && is_negative(value))
+	len = 0;
+	nb = value;
+	if (value < 0 && base == 10)
 	{
 		len++;
-		neg = -neg;
+		nb = (unsigned int)(-value);
 	}
-	nb = neg;
-	len = len + lennb(neg, base);
-	nbr = malloc(sizeof(char) * (len + 1));
-	if (!nbr)
+	else if (base != 10 && nb < 0)
+		nb = (unsigned int)(value);
+	len = nblen(nb, base, len);
+	if (nb == 0)
+		len = 1;
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
 		return (NULL);
-	nbr[len] = '\0';
-	nbr = makestr(nb, base, len, nbr);
-	if (is_negative(value) && is_discimal(base))
-		nbr[0] = '-';
-	return (nbr);
+	str[len] = '\0';
+	str = makestr(nb, base, len, str);
+	if (value < 0 && base == 10)
+		str[0] = '-';
+	return (str);
 }

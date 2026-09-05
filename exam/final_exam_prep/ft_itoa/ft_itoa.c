@@ -1,55 +1,51 @@
 #include <stdlib.h>
 
-char *ft_itoa(int n)
+int nblen(long int nb, int len)
 {
-	int len = 0;
-	int is_negative = 0;
-	long int nb = n;
-	long int tmp;
-	char *str;
+	while (nb > 0)
+	{
+		len++;
+		nb = nb / 10;
+	}
+	return (len);
+}
 
-	if (nb < 0)
-	{
-		is_negative = 1;
-		len++;
-		nb = -nb;
-	}
-	if (nb == 0)
-		len = 1;
-	tmp = nb;
-	while (tmp > 0)
-	{
-		tmp = tmp / 10;
-		len++;
-	}
-	str = malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return NULL;
-	str[len] = '\0';
-	if (nb == 0)
-		str[0] = '0';
+char *makestr(long int nb, int len, char *ptr)
+{
 	while (nb > 0)
 	{
 		len--;
-		str[len] = (nb % 10) + '0';
-		nb /= 10;
+		ptr[len] = (nb % 10) + '0';
+		nb = nb / 10;
 	}
-	if (is_negative)
-		str[0] = '-';
-	return (str);
+	return (ptr);
 }
 
-/*#include <unistd.h>
-
-int main()
+char *ft_itoa(int n)
 {
-	int n = -15456;
-	char *str = ft_itoa(n);
-	int i = 0;
-	while (str[i])
+	char *ptr;
+	long int nb;
+	int len;
+
+	len = 0;
+	nb = n;
+	if (nb < 0)
 	{
-		write(1, &str[i], 1);
-		i++;
+		nb = -nb;
+		len++;
 	}
-	return 0;
-}*/
+	if (nb > 0)
+		len = nblen(nb, len);
+	if (nb == 0)
+		len = 1;
+	ptr = malloc(sizeof(char) * (len + 1));
+	if (!ptr)
+		return (NULL);
+	ptr[len] = '\0';
+	if (nb == 0)
+		ptr[0] = '0';
+	ptr = makestr(nb, len, ptr);
+	if (n < 0)
+		ptr[0] = '-';
+	return (ptr);
+}
